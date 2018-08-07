@@ -15,10 +15,18 @@ class ViewController: UIViewController {
     @IBOutlet var teamBPointsLabel:UILabel!
     @IBOutlet var teamApointsInputtText:UITextField!
     @IBOutlet var teamBpointsInputtText:UITextField!
+    @IBOutlet var pointsSlider: UISlider!
     
     @IBAction func showPoints(sender: AnyObject){
         teamAPointsLabel.text = teamApointsInputtText.text
         teamBPointsLabel.text = teamBpointsInputtText.text
+        
+        
+        let amount:String! = teamAPointsLabel.text
+        pointsSlider.value = Float(amount)!/165
+        pointsSlider.isEnabled = false
+        
+
     }
     
 
