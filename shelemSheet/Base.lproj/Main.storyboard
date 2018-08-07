@@ -49,7 +49,10 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AJ3-eO-5dZ">
                                 <rect key="frame" x="161" y="118" width="67" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="CALL"/>
+                                <connections>
+                                    <action selector="showPointsWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gWN-Ww-AO9"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="P3/P4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iHf-uI-j3W">
                                 <rect key="frame" x="283" y="28" width="47" height="21"/>
@@ -69,6 +72,12 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="teamAPointsLabel" destination="gHr-SD-LNE" id="9Pk-k8-uT9"/>
+                        <outlet property="teamApointsInputtText" destination="sgH-hn-3cy" id="781-h8-T84"/>
+                        <outlet property="teamBPointsLabel" destination="e5B-Oi-BX6" id="noL-NJ-WWE"/>
+                        <outlet property="teamBpointsInputtText" destination="hkZ-8z-pbo" id="XRZ-7M-iTd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

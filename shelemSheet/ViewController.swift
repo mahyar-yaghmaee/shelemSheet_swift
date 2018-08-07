@@ -9,8 +9,18 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
 
-
+    @IBOutlet var teamAPointsLabel:UILabel!
+    @IBOutlet var teamBPointsLabel:UILabel!
+    @IBOutlet var teamApointsInputtText:UITextField!
+    @IBOutlet var teamBpointsInputtText:UITextField!
+    
+    @IBAction func showPoints(sender: AnyObject){
+        teamAPointsLabel.text = teamApointsInputtText.text
+        teamBPointsLabel.text = teamBpointsInputtText.text
+    }
+    
 
 
 }
