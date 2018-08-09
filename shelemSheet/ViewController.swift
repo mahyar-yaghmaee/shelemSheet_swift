@@ -18,18 +18,34 @@ class ViewController: UIViewController {
     @IBOutlet var pointsSlider: UISlider!
     
     @IBAction func showPoints(sender: AnyObject){
-        teamAPointsLabel.text = teamApointsInputtText.text
-        teamBPointsLabel.text = teamBpointsInputtText.text
-        
-        
-        let amount:String! = teamAPointsLabel.text
-        pointsSlider.value = Float(amount)!/165
-        pointsSlider.isEnabled = false
-        
 
+
+        let amountTeamA:String! = teamApointsInputtText.text
+        print("Hello!: ", amountTeamA)
+        if (Int(amountTeamA)! > 165 || Int(amountTeamA)! < 100 || Int(amountTeamA)!%5 != 0){
+            //|| Int(amountTeamA)! > 100 || Int(amountTeamA)!%5 != 0
+            createAlert(title: "Invalid Number", message: "CALL range : 100 to 165 (5 point slices)")
+        }
+        else{
+            pointsSlider.value = Float(amountTeamA)!/165
+            pointsSlider.isEnabled = false
+            teamAPointsLabel.text = teamApointsInputtText.text
+            teamBPointsLabel.text = teamBpointsInputtText.text
+        }
+
+    
     }
     
 
+    func createAlert(title:String, message:String) -> Void {
+     //   let alertUI = UIAlertController(nibName: title, bundle: message)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: {(action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated:true, completion: nil)
+    }
 
 }
 
