@@ -14,9 +14,12 @@ class ViewController: UIViewController {
     var isCallTime: Bool = true // this is to show which state we are in, starting with CALL state (vs Submit Points state)
     @IBOutlet var teamAPointsLabel:UILabel!
     @IBOutlet var teamBPointsLabel:UILabel!
+    @IBOutlet var callLabel: UILabel!
     @IBOutlet var teamApointsInputtText:UITextField!
     @IBOutlet var teamBpointsInputtText:UITextField!
     @IBOutlet var pointsSlider: UISlider!
+    var callNumber: Int = 0
+    var didTeamACalled: Bool = false
     
     @IBAction func showPoints(sender: AnyObject){
 
@@ -28,12 +31,21 @@ class ViewController: UIViewController {
                 createAlert(title: "Invalid CALL input", message: "Only one team should CALL")
             }
             else{
-                if (isCallNumberValid(number: Int(amountTeamA)!)){
-                    pointsSlider.value = Float(amountTeamA)!/165
-                    pointsSlider.isEnabled = false
+                if (amountTeamA.isEmpty){
+                    callNumber = Int(amountTeamB)!
+                    didTeamACalled = false
+                } else {
+                    callNumber = Int(amountTeamA)!
+                    didTeamACalled = true
+                }
+                
+                if (isCallNumberValid(number: callNumber)){
+                    print("didTeamACalled: ", didTeamACalled)
+                    setSliderValue(number: callNumber, didTeamACalled: didTeamACalled)
                     teamAPointsLabel.text = teamApointsInputtText.text
                     teamBPointsLabel.text = teamBpointsInputtText.text
-                    isCallTime = !isCallTime
+                    callLabel.text = String(callNumber)
+                 //   isCallTime = !isCallTime
                 }
                 else{
                     createAlert(title: "Invalid Number", message: "CALL range : 100 to 165 (5 point slices)")
@@ -44,13 +56,23 @@ class ViewController: UIViewController {
     
     }
     
+    func setSliderValue(number: Int, didTeamACalled: Bool){
+        if didTeamACalled{
+            pointsSlider.value = Float(number)/165
+        }
+        else {
+            pointsSlider.value = Float(165-number)/165
+        }
+        pointsSlider.isEnabled = false
+    }
+    
+    
     func isCallNumberValid(number: Int) -> Bool {
         if (number < 170 && number > 100 && number%5 == 0){
             return true
         }
         return false
     }
-    
 
     func createAlert(title:String, message:String) -> Void {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
