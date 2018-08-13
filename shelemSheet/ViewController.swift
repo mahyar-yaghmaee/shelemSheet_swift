@@ -18,14 +18,20 @@ class ViewController: UIViewController {
     @IBOutlet var teamApointsInputtText:UITextField!
     @IBOutlet var teamBpointsInputtText:UITextField!
     @IBOutlet var pointsSlider: UISlider!
+    @IBOutlet var pointsButton: UIButton!
     var callNumber: Int = 0
     var didTeamACalled: Bool = false
+    var teamAFinalPoint: Int = 0
+    var teamBFinalPoint: Int = 0
     
     @IBAction func showPoints(sender: AnyObject){
 
         let amountTeamA:String! = teamApointsInputtText.text
         let amountTeamB:String! = teamBpointsInputtText.text
         if isCallTime{
+            print("isCallTime: ", isCallTime)
+
+           
             // only one value should be entered (teamA or teamB)
             if (amountTeamA.isEmpty == amountTeamB.isEmpty){
                 createAlert(title: "Invalid CALL input", message: "Only one team should CALL")
@@ -42,10 +48,11 @@ class ViewController: UIViewController {
                 if (isCallNumberValid(number: callNumber)){
                     print("didTeamACalled: ", didTeamACalled)
                     setSliderValue(number: callNumber, didTeamACalled: didTeamACalled)
-                    teamAPointsLabel.text = teamApointsInputtText.text
-                    teamBPointsLabel.text = teamBpointsInputtText.text
                     callLabel.text = String(callNumber)
-                 //   isCallTime = !isCallTime
+                    
+                    isCallTime = !isCallTime
+                    pointsButton.setTitle("POINTS",for: .normal)
+                   
                 }
                 else{
                     createAlert(title: "Invalid Number", message: "CALL range : 100 to 165 (5 point slices)")
@@ -53,8 +60,41 @@ class ViewController: UIViewController {
                 }
             }
         }
+        else { // Submit point time!
+            print("isCallTime: ", isCallTime)
+            
+            if (amountTeamA.isEmpty || amountTeamB.isEmpty){
+                createAlert(title: "Invalid Submit input", message: "Both teams need points")
+            }
+            else {
+                if (!isSubmitNumberValid(number:Int(amountTeamA)!) || (!isSubmitNumberValid(number:Int(amountTeamB)!))){
+                    createAlert(title: "Invalid Submit input", message: "Invalid value for a team")
+                }
+                else {
+                    teamAFinalPoint = teamAFinalPoint + Int(teamApointsInputtText.text!)!
+                    teamBFinalPoint = teamBFinalPoint + Int(teamBpointsInputtText.text!)!
+                    teamAPointsLabel.text = String(teamAFinalPoint)
+                    teamBPointsLabel.text = String(teamBFinalPoint)
+                    
+                    isCallTime = !isCallTime
+                    pointsButton.setTitle("CALL",for: .normal)
+                }
+
+            }
+            
+        }
     
     }
+    
+    
+    func isSubmitNumberValid(number: Int) -> Bool {
+        if (number%5 == 0){
+            return true
+        }
+        return false
+    }
+    
+
     
     func setSliderValue(number: Int, didTeamACalled: Bool){
         if didTeamACalled{
@@ -68,7 +108,7 @@ class ViewController: UIViewController {
     
     
     func isCallNumberValid(number: Int) -> Bool {
-        if (number < 170 && number > 100 && number%5 == 0){
+        if (number < 170 && number > 95 && number%5 == 0){
             return true
         }
         return false

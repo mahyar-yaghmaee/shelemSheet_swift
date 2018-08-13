@@ -47,7 +47,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AJ3-eO-5dZ">
-                                <rect key="frame" x="161" y="118" width="67" height="30"/>
+                                <rect key="frame" x="139" y="118" width="112" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="CALL"/>
                                 <connections>
@@ -72,8 +72,8 @@
                                 <rect key="frame" x="135" y="189" width="118" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6Z-4u-x03">
-                                <rect key="frame" x="173" y="160" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="called" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6Z-4u-x03">
+                                <rect key="frame" x="173" y="160" width="46" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -85,6 +85,7 @@
                     </view>
                     <connections>
                         <outlet property="callLabel" destination="Z6Z-4u-x03" id="jJV-hd-r19"/>
+                        <outlet property="pointsButton" destination="AJ3-eO-5dZ" id="qeG-16-UuA"/>
                         <outlet property="pointsSlider" destination="SMd-vn-XW0" id="C9W-vF-8VJ"/>
                         <outlet property="teamAPointsLabel" destination="gHr-SD-LNE" id="9Pk-k8-uT9"/>
                         <outlet property="teamApointsInputtText" destination="sgH-hn-3cy" id="781-h8-T84"/>
