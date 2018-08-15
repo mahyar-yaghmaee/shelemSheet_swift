@@ -15,6 +15,12 @@ class RoundedButton : UIButton {
         // To always have it as 2 pixel border
         layer.borderWidth = 2/UIScreen.main.nativeScale
         layer.borderColor = UIColor.black.cgColor
+        
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = frame.height/2
     }
     
 }
