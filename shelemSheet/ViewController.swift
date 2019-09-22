@@ -18,7 +18,6 @@ class ViewController: UIViewController {
     @IBOutlet var callLabel: UILabel!
     @IBOutlet var teamApointsInputtText:UITextField!
     @IBOutlet var teamBpointsInputtText:UITextField!
-    @IBOutlet var pointsSlider: UISlider!
     @IBOutlet var pointsButton: UIButton!
     @IBOutlet var progressBarValue: UIProgressView!
     var callNumber: Int = 0
@@ -49,7 +48,6 @@ class ViewController: UIViewController {
                 
                 if (isCallNumberValid(number: callNumber)){
                     print("didTeamACalled: ", didTeamACalled)
-                    setSliderValue(number: callNumber, didTeamACalled: didTeamACalled)
                     setProgressBarValue(number: callNumber, didTeamACalled: didTeamACalled)
                     callLabel.text = String(callNumber)
                     
@@ -105,17 +103,6 @@ class ViewController: UIViewController {
             progressBarValue.progress = Float(gameMaxCallPoints-number)/Float(gameMaxCallPoints)
         }
         
-    }
-
-    
-    func setSliderValue(number: Int, didTeamACalled: Bool){
-        if didTeamACalled{
-            pointsSlider.value = Float(number)/Float(gameMaxCallPoints)
-        }
-        else {
-            pointsSlider.value = Float(gameMaxCallPoints-number)/Float(gameMaxCallPoints)
-        }
-        pointsSlider.isEnabled = false
     }
     
     
