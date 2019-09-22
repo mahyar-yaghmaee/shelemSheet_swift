@@ -34,7 +34,7 @@ class ViewController: UIViewController {
            
             // only one value should be entered (teamA or teamB)
             if (amountTeamA.isEmpty == amountTeamB.isEmpty){
-                createAlert(title: "Invalid CALL input", message: "Only one team should CALL")
+                createAlert(title: "Invalid CALL", message: "Only one team should CALL")
             }
             else{
                 if (amountTeamA.isEmpty){
@@ -64,11 +64,11 @@ class ViewController: UIViewController {
             print("isCallTime: ", isCallTime)
             
             if (amountTeamA.isEmpty || amountTeamB.isEmpty){
-                createAlert(title: "Invalid Submit input", message: "Both teams need points")
+                createAlert(title: "Invalid points", message: "Submit points for both teams")
             }
             else {
                 if (!isSubmitNumberValid(number:Int(amountTeamA)!) || (!isSubmitNumberValid(number:Int(amountTeamB)!))){
-                    createAlert(title: "Invalid Submit input", message: "Invalid value for a team")
+                    createAlert(title: "Invalid points", message: "Points should be dividable by 5")
                 }
                 else {
                     teamAFinalPoint = teamAFinalPoint + Int(teamApointsInputtText.text!)!
