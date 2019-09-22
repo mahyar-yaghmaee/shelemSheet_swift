@@ -11,6 +11,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var gameMaxCallPoints: Int = 165
     var isCallTime: Bool = true // this is to show which state we are in, starting with CALL state (vs Submit Points state)
     @IBOutlet var teamAPointsLabel:UILabel!
     @IBOutlet var teamBPointsLabel:UILabel!
@@ -19,6 +20,7 @@ class ViewController: UIViewController {
     @IBOutlet var teamBpointsInputtText:UITextField!
     @IBOutlet var pointsSlider: UISlider!
     @IBOutlet var pointsButton: UIButton!
+    @IBOutlet var progressBarValue: UIProgressView!
     var callNumber: Int = 0
     var didTeamACalled: Bool = false
     var teamAFinalPoint: Int = 0
@@ -48,6 +50,7 @@ class ViewController: UIViewController {
                 if (isCallNumberValid(number: callNumber)){
                     print("didTeamACalled: ", didTeamACalled)
                     setSliderValue(number: callNumber, didTeamACalled: didTeamACalled)
+                    setProgressBarValue(number: callNumber, didTeamACalled: didTeamACalled)
                     callLabel.text = String(callNumber)
                     
                     isCallTime = !isCallTime
@@ -94,14 +97,23 @@ class ViewController: UIViewController {
         return false
     }
     
+    func setProgressBarValue(number: Int, didTeamACalled: Bool){
+        if didTeamACalled{
+            progressBarValue.progress = Float(number)/Float(gameMaxCallPoints)
+        }
+        else {
+            progressBarValue.progress = Float(gameMaxCallPoints-number)/Float(gameMaxCallPoints)
+        }
+        
+    }
 
     
     func setSliderValue(number: Int, didTeamACalled: Bool){
         if didTeamACalled{
-            pointsSlider.value = Float(number)/165
+            pointsSlider.value = Float(number)/Float(gameMaxCallPoints)
         }
         else {
-            pointsSlider.value = Float(165-number)/165
+            pointsSlider.value = Float(gameMaxCallPoints-number)/Float(gameMaxCallPoints)
         }
         pointsSlider.isEnabled = false
     }

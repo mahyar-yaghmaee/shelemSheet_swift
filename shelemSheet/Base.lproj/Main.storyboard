@@ -73,7 +73,6 @@
                                     <fragment content="Team B">
                                         <attributes>
                                             <font key="NSFont" size="17" name=".AppleSystemUIFontEmphasized"/>
-                                            <font key="NSOriginalFont" size="17" name=".AppleSystemUIFontEmphasized"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -102,6 +101,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="F8p-sL-LtV">
+                                <rect key="frame" x="112" y="314" width="150" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" red="0.79506816928841939" green="0.86263135029244298" blue="0.73943944464233369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -110,6 +113,7 @@
                         <outlet property="callLabel" destination="Z6Z-4u-x03" id="jJV-hd-r19"/>
                         <outlet property="pointsButton" destination="AJ3-eO-5dZ" id="qeG-16-UuA"/>
                         <outlet property="pointsSlider" destination="SMd-vn-XW0" id="C9W-vF-8VJ"/>
+                        <outlet property="progressBarValue" destination="F8p-sL-LtV" id="Iua-qV-EP7"/>
                         <outlet property="teamAPointsLabel" destination="gHr-SD-LNE" id="9Pk-k8-uT9"/>
                         <outlet property="teamApointsInputtText" destination="sgH-hn-3cy" id="781-h8-T84"/>
                         <outlet property="teamBPointsLabel" destination="e5B-Oi-BX6" id="noL-NJ-WWE"/>
