@@ -11,14 +11,15 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var gameMaxCallPoints: Int = 165
     var isCallTime: Bool = true // this is to show which state we are in, starting with CALL state (vs Submit Points state)
     @IBOutlet var teamAPointsLabel:UILabel!
     @IBOutlet var teamBPointsLabel:UILabel!
     @IBOutlet var callLabel: UILabel!
     @IBOutlet var teamApointsInputtText:UITextField!
     @IBOutlet var teamBpointsInputtText:UITextField!
-    @IBOutlet var pointsSlider: UISlider!
     @IBOutlet var pointsButton: UIButton!
+    @IBOutlet var progressBarValue: UIProgressView!
     var callNumber: Int = 0
     var didTeamACalled: Bool = false
     var teamAFinalPoint: Int = 0
@@ -34,7 +35,7 @@ class ViewController: UIViewController {
            
             // only one value should be entered (teamA or teamB)
             if (amountTeamA.isEmpty == amountTeamB.isEmpty){
-                createAlert(title: "Invalid CALL input", message: "Only one team should CALL")
+                createAlert(title: "Invalid CALL", message: "Only one team should CALL")
             }
             else{
                 if (amountTeamA.isEmpty){
@@ -47,7 +48,7 @@ class ViewController: UIViewController {
                 
                 if (isCallNumberValid(number: callNumber)){
                     print("didTeamACalled: ", didTeamACalled)
-                    setSliderValue(number: callNumber, didTeamACalled: didTeamACalled)
+                    setProgressBarValue(number: callNumber, didTeamACalled: didTeamACalled)
                     callLabel.text = String(callNumber)
                     
                     isCallTime = !isCallTime
@@ -64,11 +65,11 @@ class ViewController: UIViewController {
             print("isCallTime: ", isCallTime)
             
             if (amountTeamA.isEmpty || amountTeamB.isEmpty){
-                createAlert(title: "Invalid Submit input", message: "Both teams need points")
+                createAlert(title: "Invalid points", message: "Submit points for both teams")
             }
             else {
                 if (!isSubmitNumberValid(number:Int(amountTeamA)!) || (!isSubmitNumberValid(number:Int(amountTeamB)!))){
-                    createAlert(title: "Invalid Submit input", message: "Invalid value for a team")
+                    createAlert(title: "Invalid points", message: "Points should be dividable by 5")
                 }
                 else {
                     teamAFinalPoint = teamAFinalPoint + Int(teamApointsInputtText.text!)!
@@ -94,16 +95,14 @@ class ViewController: UIViewController {
         return false
     }
     
-
-    
-    func setSliderValue(number: Int, didTeamACalled: Bool){
+    func setProgressBarValue(number: Int, didTeamACalled: Bool){
         if didTeamACalled{
-            pointsSlider.value = Float(number)/165
+            progressBarValue.progress = Float(number)/Float(gameMaxCallPoints)
         }
         else {
-            pointsSlider.value = Float(165-number)/165
+            progressBarValue.progress = Float(gameMaxCallPoints-number)/Float(gameMaxCallPoints)
         }
-        pointsSlider.isEnabled = false
+        
     }
     
     
